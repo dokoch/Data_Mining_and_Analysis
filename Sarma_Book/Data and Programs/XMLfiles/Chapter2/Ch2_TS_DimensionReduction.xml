@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="14.1" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="97" Y="142" DESCRIPTION="TRANSACT" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="transact1" Scope="LOCAL" Role="TRANSACTION" Library="THEBOOK" Table="TRANSACT" NCols="4" NObs="1080" NBytes="29696" Segment="" DataSourceRole="TRANSACTION" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="transact1" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="Ksarma" DsCreateDate="1810546411.9" DsModifiedBy="Ksarma" DsModifyDate="1810546411.9" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="Product" AttributeName="ROLE" AttributeValue="CROSSID"/>
+<DELTA Variable="Product" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="STATE" AttributeName="ROLE" AttributeValue="CROSSID"/>
+<DELTA Variable="Sales" AttributeName="ROLE" AttributeValue="TARGET"/>
+</EmVariableAttributes>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="TSDP" ID="TSDP" X="253" Y="142" DESCRIPTION="TS Data Preparation" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="TSDM" TOOLPREFIX="TSDP">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMTSDM.TSDP.SOURCE" TimeIntervalSel="AUTO" TimeInterval="AUTO" UserLengthCycle="2" LengthCycleSel="DEFAULT" Missing="MISSING" Accumulation="TOTAL" MissingConstant="0.0" Transform="NONE" BoxCoxPara="0.0" ApplyDIF="N" DIF="1" ApplySDIF="N" ExportedDs="SEASON" TransExportedDs="Y" TrendDefaultNPeriods="Y" TrendNPeriods="24" ODSGraphs="NONE" CreateTSID="Y" Transpose="Y" TransByVar="BYTSID" KeepVarRole="N" ZeroMiss="NONE" StartEndTime="DEFAULT" NMaxTSPlot="100" ExportSeasonStat="N" SeasonStat="SUM" ForceRun="N" RunAction="Train" Component="TSDP" TimeOfDay="DEFAULT" MergeClus="N" SaveMergedDs="DEFAULT" LibnameExtDs="WORK" NameExtDs="TS_SEGMENT_DS" ClusterInput="N" Start="DEFAULT" End="DEFAULT" AtomicData="N" InputDataType="DEFAULT">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<TIMESTARTANDEND Type="DATA">
+<Data>
+<Obs DATE="16437" _INDEX_="1"/>
+<Obs DATE="16468" _INDEX_="0"/>
+<Obs DATE="16496" _INDEX_="0"/>
+<Obs DATE="16527" _INDEX_="0"/>
+<Obs DATE="16557" _INDEX_="0"/>
+<Obs DATE="16588" _INDEX_="0"/>
+<Obs DATE="16618" _INDEX_="0"/>
+<Obs DATE="16649" _INDEX_="0"/>
+<Obs DATE="16680" _INDEX_="0"/>
+<Obs DATE="16710" _INDEX_="0"/>
+<Obs DATE="16741" _INDEX_="0"/>
+<Obs DATE="16771" _INDEX_="0"/>
+<Obs DATE="16802" _INDEX_="0"/>
+<Obs DATE="16833" _INDEX_="0"/>
+<Obs DATE="16861" _INDEX_="0"/>
+<Obs DATE="16892" _INDEX_="0"/>
+<Obs DATE="16922" _INDEX_="0"/>
+<Obs DATE="16953" _INDEX_="0"/>
+<Obs DATE="16983" _INDEX_="0"/>
+<Obs DATE="17014" _INDEX_="0"/>
+<Obs DATE="17045" _INDEX_="0"/>
+<Obs DATE="17075" _INDEX_="0"/>
+<Obs DATE="17106" _INDEX_="0"/>
+<Obs DATE="17136" _INDEX_="0"/>
+<Obs DATE="17167" _INDEX_="0"/>
+<Obs DATE="17198" _INDEX_="0"/>
+<Obs DATE="17226" _INDEX_="0"/>
+<Obs DATE="17257" _INDEX_="0"/>
+<Obs DATE="17287" _INDEX_="0"/>
+<Obs DATE="17318" _INDEX_="0"/>
+<Obs DATE="17348" _INDEX_="0"/>
+<Obs DATE="17379" _INDEX_="0"/>
+<Obs DATE="17410" _INDEX_="0"/>
+<Obs DATE="17440" _INDEX_="0"/>
+<Obs DATE="17471" _INDEX_="0"/>
+<Obs DATE="17501" _INDEX_="0"/>
+<Obs DATE="17532" _INDEX_="0"/>
+<Obs DATE="17563" _INDEX_="0"/>
+<Obs DATE="17592" _INDEX_="0"/>
+<Obs DATE="17623" _INDEX_="0"/>
+<Obs DATE="17653" _INDEX_="0"/>
+<Obs DATE="17684" _INDEX_="0"/>
+<Obs DATE="17714" _INDEX_="0"/>
+<Obs DATE="17745" _INDEX_="0"/>
+<Obs DATE="17776" _INDEX_="0"/>
+<Obs DATE="17806" _INDEX_="0"/>
+<Obs DATE="17837" _INDEX_="0"/>
+<Obs DATE="17867" _INDEX_="0"/>
+<Obs DATE="17898" _INDEX_="0"/>
+<Obs DATE="17929" _INDEX_="0"/>
+<Obs DATE="17957" _INDEX_="0"/>
+<Obs DATE="17988" _INDEX_="0"/>
+<Obs DATE="18018" _INDEX_="0"/>
+<Obs DATE="18049" _INDEX_="0"/>
+<Obs DATE="18079" _INDEX_="0"/>
+<Obs DATE="18110" _INDEX_="0"/>
+<Obs DATE="18141" _INDEX_="0"/>
+<Obs DATE="18171" _INDEX_="0"/>
+<Obs DATE="18202" _INDEX_="0"/>
+<Obs DATE="18232" _INDEX_="2"/>
+</Data>
+<Metadata>
+<Variable NAME="DATE" LABEL="" LENGTH="8" FORMAT="MONYY7." TYPE="N"/>
+<Variable NAME="_INDEX_" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</TIMESTARTANDEND>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="TSDR" ID="TSDR" X="397" Y="142" DESCRIPTION="TS Dimension Reduction" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="TSDM" TOOLPREFIX="TSDR">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMTSDM.TSDR.SOURCE" TimeInterval="AUTO" ReductionMethod="SVD" DimNumber="10" ApplyNorm="N" NormMethod="GN" NormBin="10" ExportData="CLU" NMaxTSPlot="100" ForceRun="N" RunAction="Train" Component="TSDR">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="TSDP" TO="TSDR"/>
+<CONNECTION FROM="Ids" TO="TSDP"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>

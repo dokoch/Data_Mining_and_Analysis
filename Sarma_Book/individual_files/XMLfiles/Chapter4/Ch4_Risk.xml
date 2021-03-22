@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="14.1" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMCORE.EMCODETOOL.CLASS" COMPONENT="SASCode" ID="EMCODE" X="723" Y="183" DESCRIPTION="SAS Code" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="UTILITY" TOOLPREFIX="EMCODE">
+<PROPERTIES UsePriors="Y" ToolType="UTILITY" DataNeeded="N" PublishCode="PUBLISH" ScoreCodeFormat="DATASTEP" MetaAdvisor="BASIC" ForceRun="N" RunAction="Train" Component="SASCode">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data><![CDATA[
+ 
+ods html file='C:\TheBook\EM14.1\Reports\Chapter4\Ch4_Risk_Train.html';
+proc print data=&amp;EM_IMPORT_RANK label noobs   ;
+ var decile  _MEANP_ _TARGETMEAN_ ;
+ where DATAROLE =&quot;TRAIN&quot; ;
+ Title &quot;Comparison of Predicted and Actual Mean Loss Frequency by Decile&quot;;
+ Title2 &quot;Training Dataset&quot;;
+run;
+ods html close;
+ods html file='C:\TheBook\EM14.1\Reports\Chapter4\Ch4_Risk_Valid.html';
+proc print data=&amp;EM_IMPORT_RANK label noobs  ;
+ var decile  _MEANP_ _TARGETMEAN_ ;
+ where DATAROLE =&quot;VALIDATE&quot; ;
+ Title &quot;Comparison of Predicted and Actual Mean Loss Frequency by Decile&quot;;
+ Title2 &quot;Validation Dataset&quot;;
+run;
+ods html close;
+ 
+ods html file='C:\TheBook\EM14.1\Reports\Chapter4\Ch4_Risk_Test.html';
+proc print data=&amp;EM_IMPORT_RANK label noobs  ;
+ var decile  _MEANP_ _TARGETMEAN_ ;
+ where DATAROLE =&quot;TEST&quot; ;
+ Title &quot;Comparison of Predicted and Actual Mean Loss Frequency by Decile&quot;;
+ Title2 &quot;Test Dataset&quot;;
+run;
+ods html close;
+]]>
+</Data>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="113" Y="141" DESCRIPTION="LOSSFREQUENCY" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="lossfrequency" Scope="LOCAL" Role="RAW" Library="THEBOOK" Table="LOSSFREQUENCY" NCols="27" NObs="29855" NBytes="4801536" Segment="" DataSourceRole="RAW" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="ADVANCED" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="lossfrequency" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="Ksarma" DsCreateDate="1785844699.2" DsModifiedBy="Ksarma" DsModifyDate="1785844699.3" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="ANTHFT" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="DELINQ" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="DEPC" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="GENDER" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="HEQ" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="INCOME" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="LOSSFRQ" AttributeName="ROLE" AttributeValue="TARGET"/>
+<DELTA Variable="MFDU" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="MOB" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NAF" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NOSBLT" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NPRACC" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NPRVIO" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NSMOK" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NUMTR" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVEH" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="RES_STA" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="cuscode" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="cuscode" AttributeName="COMMENT" AttributeValue="Exceeds maximum number of levels cutoff"/>
+</EmVariableAttributes>
+<EmTargetAttributes>
+<LOSSFRQ>
+<DecData Table="EMWS8.Ids_LOSSFRQ_DD">
+<Data>
+<Obs LOSSFRQ="0.0007862945"/>
+<Obs LOSSFRQ="4.0211192726"/>
+<Obs LOSSFRQ="2.0109527836"/>
+</Data>
+<Metadata>
+<Variable NAME="LOSSFRQ" LABEL="Loss frequency" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS8.Ids_LOSSFRQ_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" FORMAT="" LEVEL="PROFIT" TYPE="" COST="" USE="N" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="TARGET" VARIABLE="LOSSFRQ" LABEL="Loss frequency" FORMAT="" LEVEL="INTERVAL" TYPE="N" COST="" USE="" MIN="0.0007862945" MEAN="0.1235480485" MAX="4.0211192726"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_LOSSFRQ" LABEL="Predicted: LOSSFRQ" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_LOSSFRQ" LABEL="Residual: LOSSFRQ" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="MIN" LABEL="Minimum" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MEAN" LABEL="Mean" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MAX" LABEL="Maximum" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecMeta>
+</LOSSFRQ>
+</EmTargetAttributes>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMASSMT.ASSESS.CLASS" COMPONENT="ModelCompare" ID="MdlComp" X="575" Y="183" DESCRIPTION="Model Comparison" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="ASSESS" TOOLPREFIX="MdlComp">
+<PROPERTIES NumberOfReportedLevels="1E-6" NormalizeReportingVariables="Y" DecileBin="20" LiftEpsilon="1E-6" ProfitEpsilon="1E-6" RoiEpsilon="1E-6" ScoreDistBin="20" RocChart="Y" RocEpsilon="0.01" AssessAllTargetLevels="N" SelectionData="DEFAULT" HPCriteria="DEFAULT" SelectionTable="TRAIN" SelectionCriteria="DEFAULT" SelectionDepth="10" NumberofBins="20" RecomputeAssess="N" TargetName="LOSSFRQ" ModelId="Tree" ModelDescription="Decision Tree" ModelCriteria="Valid: Average Squared Error" ForceRun="N" RunAction="Train" Component="ModelCompare" StatisticUsed="_VASE_" TargetLabel="Loss frequency">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.EMDPART.CLASS" COMPONENT="Partition" ID="Part" X="278" Y="141" DESCRIPTION="Data Partition" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Part">
+<PROPERTIES Method="RANDOM" TrainPct="60" ValidatePct="30" TestPct="10" RandomSeed="12345" OutputType="DATA" IntervalDistribution="Y" ClassDistribution="Y" ForceRun="N" RunAction="Train" Component="Partition">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="DecisionTree" ID="Tree" X="427" Y="141" DESCRIPTION="Decision Tree" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Tree">
+<PROPERTIES TrainMode="BATCH" Freeze="N" UseMultipleTarget="N" NominalCriterion="PROBCHISQ" OrdinalCriterion="ENTROPY" IntervalCriterion="PROBF" Criterion="DEFAULT" SplitPrecision="4" Precision="4" SigLevel="0.2" Splitsize="." LeafSize="5" MinCatSize="5" Maxbranch="2" Maxdepth="6" Nrules="5" Nsurrs="0" MissingValue="USEINSEARCH" UseVarOnce="N" Subtree="ASSESSMENT" NSubtree="1" AssessMeasure="ASE" AssessPercentage="0.25" NodeSample="20000" Exhaustive="5000" UseDecision="N" UsePriors="N" Kass="Y" KassApply="BEFORE" Depth="Y" Inputs="N" NumInputs="1" VarSelection="Y" Dummy="N" Leafid="Y" Predict="Y" NodeRole="SEGMENT" Performance="DISK" CV="N" CVNIter="10" CVRepeat="1" CVSeed="12345" ObsImportance="N" NumSingleImp="5" ForceRun="N" RunAction="Train" Component="DecisionTree" Catalog="SASHELP.EMMODL.TREE.SOURCE" Location="CATALOG" ImportModel="N" ImportedTreeData="" CreateSample="DEFAULT" SampleMethod="RANDOM" SampleSize="10000" SampleSeed="12345" ClassColorBy="PERCENTCORRECT" IntColorBy="AVG" ShowNodeId="Y" ShowValid="Y" Pred="N" Target="ALL" Count="Y" PercentCorrect="N" ProfitLoss="NONE" AVG="Y" RASE="N" ToolType="MODEL">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="Part" TO="Tree"/>
+<CONNECTION FROM="Tree" TO="MdlComp"/>
+<CONNECTION FROM="MdlComp" TO="EMCODE"/>
+<CONNECTION FROM="Ids" TO="Part"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>

@@ -1,0 +1,25 @@
+ods html file='C:\TheBook\EM14.1\Reports\Chapter4\Ch4_Risk_Train.html';
+proc print data=&EM_IMPORT_RANK label noobs   ;
+ var decile  _MEANP_ _TARGETMEAN_ ;
+ where DATAROLE ="TRAIN" ;
+ Title "Comparison of Predicted and Actual Mean Loss Frequency by Decile";
+ Title2 "Training Dataset";
+run;
+ods html close;
+ods html file='C:\TheBook\EM14.1\Reports\Chapter4\Ch4_Risk_Valid.html';
+proc print data=&EM_IMPORT_RANK label noobs  ;
+ var decile  _MEANP_ _TARGETMEAN_ ;
+ where DATAROLE ="VALIDATE" ;
+ Title "Comparison of Predicted and Actual Mean Loss Frequency by Decile";
+ Title2 "Validation Dataset";
+run;
+ods html close;
+ 
+ods html file='C:\TheBook\EM14.1\Reports\Chapter4\Ch4_Risk_Test.html';
+proc print data=&EM_IMPORT_RANK label noobs  ;
+ var decile  _MEANP_ _TARGETMEAN_ ;
+ where DATAROLE ="TEST" ;
+ Title "Comparison of Predicted and Actual Mean Loss Frequency by Decile";
+ Title2 "Test Dataset";
+run;
+ods html close;

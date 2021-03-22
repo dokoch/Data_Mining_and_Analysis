@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="14.1" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="66" Y="42" DESCRIPTION="TRANSACT" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="transact1" Scope="LOCAL" Role="TRANSACTION" Library="THEBOOK" Table="TRANSACT" NCols="4" NObs="1080" NBytes="29696" Segment="" DataSourceRole="TRANSACTION" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="transact1" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="Ksarma" DsCreateDate="1810546411.9" DsModifiedBy="Ksarma" DsModifyDate="1810546411.9" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="Product" AttributeName="ROLE" AttributeValue="CROSSID"/>
+<DELTA Variable="Product" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="STATE" AttributeName="ROLE" AttributeValue="CROSSID"/>
+<DELTA Variable="Sales" AttributeName="ROLE" AttributeValue="TARGET"/>
+</EmVariableAttributes>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="TSESM" ID="TSESM" X="220" Y="42" DESCRIPTION="TS Exponential Smoothing" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="TSDM" TOOLPREFIX="TSESM">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMTSDM.TSESM.SOURCE" TimeInterval="AUTO" Accumulate="TOTAL" FCLead="6" FCBack="0" StartSum="1" FCMethod="BEST" BestCrit="MSE" Seasonality="DEFAULT" Alpha="0.05" EXTINPUT="N" ExtendedValue="PREDICT" ExportData="DEFAULT" SmoothOutlier="N" OutlierReplace="PREDICT" ClusLeadPoint="1" SIMPLE="Y" DOUBLE="Y" LINEAR="Y" DAMPTREND="Y" ADDSEASONAL="Y" MULTSEASONAL="Y" WINTERS="Y" ADDWINTERS="Y" PlotLength="DEFAULT" ForceRun="N" RunAction="Train" Component="TSESM" ClusInputSource="KDL">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="Ids" TO="TSESM"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>

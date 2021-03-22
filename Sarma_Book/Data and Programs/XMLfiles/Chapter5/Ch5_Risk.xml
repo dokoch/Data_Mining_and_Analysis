@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="14.1" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMCORE.EMCODETOOL.CLASS" COMPONENT="SASCode" ID="EMCODE" X="623" Y="67" DESCRIPTION="SAS Code" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="UTILITY" TOOLPREFIX="EMCODE">
+<PROPERTIES UsePriors="Y" ToolType="UTILITY" DataNeeded="N" PublishCode="PUBLISH" ScoreCodeFormat="DATASTEP" MetaAdvisor="BASIC" ForceRun="N" RunAction="Train" Component="SASCode">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data><![CDATA[
+libname lib2 'C:\TheBook\EM14.1\DATA\Chapter5' ;
+run ;
+options center ;
+data lib2.Ch5_risk_NN_train ;
+ set &amp;EM_import_data;
+run;
+data lib2.Ch5_risk_NN_validate ;
+ set &amp;EM_import_validate ;
+run;
+ 
+data lib2.Ch5_risk_NN_test ;
+ set &amp;EM_import_test ;
+run;
+                                                                                       																												
+ %macro lifts(ds=);
+ data &amp;ds ;
+  set lib2.ch5_risk_NN_&amp;ds ;
+  keep p_lossfrq0 p_lossfrq1 p_lossfrq2 lossfrq expected_lfrq;
+  expected_lfrq = 0*p_lossfrq0 + 1*p_lossfrq1 + 2*p_lossfrq2 ;
+ run ;
+ proc sort data=&amp;ds;
+  by descending expected_lfrq;
+ run ;
+proc sql noprint;
+ select count(*) into : nv1 from
+ work.&amp;ds ;
+quit ;
+data &amp;ds ;
+ retain count 0 ;
+ set &amp;ds ;
+ count+1 ;
+ if count &lt; (1/20)*&amp;nv1 then perc=5; else
+ if count &lt; (2/20)*&amp;nv1 then perc=10 ; else
+ if count &lt; (3/20)*&amp;nv1 then perc=15 ; else
+ if count &lt; (4/20)*&amp;nv1 then perc=20 ; else
+ if count &lt; (5/20)*&amp;nv1 then perc=25 ; else
+ if count &lt; (6/20)*&amp;nv1 then perc=30 ; else
+ if count &lt; (7/20)*&amp;nv1 then perc=35; else
+ if count &lt; (8/20)*&amp;nv1 then perc=40 ; else
+ if count &lt; (9/20)*&amp;nv1 then perc=45 ; else
+ if count &lt; (10/20)*&amp;nv1 then perc=50 ; else
+ if count &lt; (11/20)*&amp;nv1 then perc=55 ; else
+ if count &lt; (12/20)*&amp;nv1 then perc=60 ; else
+ if count &lt; (13/20)*&amp;nv1 then perc=65 ; else
+ if count &lt; (14/20)*&amp;nv1 then perc=70 ; else
+ if count &lt; (15/20)*&amp;nv1 then perc=75 ; else
+ if count &lt; (16/20)*&amp;nv1 then perc=80 ; else
+ if count &lt; (17/20)*&amp;nv1 then perc=85 ; else
+ if count &lt; (18/20)*&amp;nv1 then perc=90 ; else
+ if count &lt; (19/20)*&amp;nv1 then perc=95 ; else
+ perc = 100 ;
+ run ;
+proc means data=&amp;ds noprint ;
+  class perc ;
+  var lossfrq ;
+  output out= outsum sum(lossfrq) = sum_lossfrq mean(lossfrq)=mean_lossfrq;
+run ;
+data Total(keep=sum_lossfrq mean_lossfrq 
+     rename=(sum_lossfrq=Tot_lossfrq mean_lossfrq=GRM))
+     deciles ;
+  set outsum ;
+  if _TYPE_ = 0 then output Total;
+  else output deciles ;
+run ;
+data tables ;
+ set deciles ;
+ if _N_ = 1 then set total ;
+run;
+data lib2.Ch5_risk_Lift_NN_&amp;ds ;
+ set tables ;
+ retain cumsum 0 nobs 0;
+ cumsum + sum_lossfrq ;
+ capc = cumsum/tot_lossfrq ;
+ gmean = tot_lossfrq/&amp;nv1 ;
+ nobs+_freq_ ;
+ meanc = cumsum/nobs ;
+ liftc = meanc/GRM;
+ label perc='Percentile'
+       Mean_lossfrq='Lossfrq Mean'
+       Meanc='Lossfrq Cumulative Mean'
+       liftc ='Cumulative Lift' ;
+ RUN;
+ proc print data=lib2.ch5_risk_Lift_NN_&amp;DS label noobs ;
+    var perc mean_lossfrq meanc liftc ;
+ Title1 &quot;             Loss Frequency: &amp;DS&quot; ;
+ Title2  ;
+RUN;
+%mend lifts ;
+ %lifts(ds=TRAIN);
+ %lifts(ds=VALIDATE);
+ %lifts(ds=TEST) ;
+ 
+]]>
+</Data>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="149" Y="139" DESCRIPTION="CH5_LOSSDAT2" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="chlossdat" Scope="LOCAL" Role="RAW" Library="THEBOOK" Table="CH5_LOSSDAT2" NCols="25" NObs="29855" NBytes="4596736" Segment="" DataSourceRole="RAW" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="ADVANCED" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="8" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="chlossdat" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="Ksarma" DsCreateDate="1786305905.4" DsModifiedBy="Ksarma" DsModifyDate="1786305905.5" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="ANTHFT" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="DEPC" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="GENDER" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="HEQ" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="INCOME" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="LOSSFRQ" AttributeName="ROLE" AttributeValue="TARGET"/>
+<DELTA Variable="LOSSFRQ" AttributeName="LEVEL" AttributeValue="ORDINAL"/>
+<DELTA Variable="MOB" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NAF" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NOSBLT" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NSMOK" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVEH" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="RES_STA" AttributeName="LEVEL" AttributeValue="BINARY"/>
+</EmVariableAttributes>
+<EmTargetAttributes>
+<LOSSFRQ>
+<DecData Table="EMWS2.Ids_LOSSFRQ_DD">
+<Data>
+<Obs LOSSFRQ="2" COUNT="36" DATAPRIOR="0.0012058282" TRAINPRIOR="0.0012058282" DECPRIOR="0.0012" DECISION1="5" DECISION2="-1" DECISION3="-2"/>
+<Obs LOSSFRQ="1" COUNT="709" DATAPRIOR="0.0237481159" TRAINPRIOR="0.0237481159" DECPRIOR="0.0237" DECISION1="-1" DECISION2="4" DECISION3="-1"/>
+<Obs LOSSFRQ="0" COUNT="29110" DATAPRIOR="0.9750460559" TRAINPRIOR="0.9750460559" DECPRIOR="0.975" DECISION1="-2" DECISION2="-1" DECISION3="3"/>
+</Data>
+<Metadata>
+<Variable NAME="LOSSFRQ" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="COUNT" LABEL="Level Counts" LENGTH="8" FORMAT="10." TYPE="N"/>
+<Variable NAME="DATAPRIOR" LABEL="Data Proportions" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="TRAINPRIOR" LABEL="Training Proportions" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECPRIOR" LABEL="Decision Priors" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION1" LABEL="2" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION2" LABEL="1" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION3" LABEL="0" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS2.Ids_LOSSFRQ_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" LEVEL="PROFIT" EVENT="" ORDER="" FORMAT="" TYPE="" COST="" USE="Y"/>
+<Obs _TYPE_="TARGET" VARIABLE="LOSSFRQ" LABEL="" LEVEL="ORDINAL" EVENT="2" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="DATAPRIOR" VARIABLE="DATAPRIOR" LABEL="Data Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="TRAINPRIOR" VARIABLE="TRAINPRIOR" LABEL="Training Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="DECPRIOR" VARIABLE="DECPRIOR" LABEL="Decision Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_LOSSFRQ2" LABEL="Predicted: LOSSFRQ=2" LEVEL="2" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_LOSSFRQ2" LABEL="Residual: LOSSFRQ=2" LEVEL="2" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_LOSSFRQ1" LABEL="Predicted: LOSSFRQ=1" LEVEL="1" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_LOSSFRQ1" LABEL="Residual: LOSSFRQ=1" LEVEL="1" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_LOSSFRQ0" LABEL="Predicted: LOSSFRQ=0" LEVEL="0" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_LOSSFRQ0" LABEL="Residual: LOSSFRQ=0" LEVEL="0" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="FROM" VARIABLE="F_LOSSFRQ" LABEL="From: LOSSFRQ" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="C" COST="" USE=""/>
+<Obs _TYPE_="INTO" VARIABLE="I_LOSSFRQ" LABEL="Into: LOSSFRQ" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="C" COST="" USE=""/>
+<Obs _TYPE_="MODELDECISION" VARIABLE="D_LOSSFRQ" LABEL="Decision: LOSSFRQ" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="EXPECTEDPROFIT" VARIABLE="EP_LOSSFRQ" LABEL="Expected Profit: LOSSFRQ" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="COMPUTEDPROFIT" VARIABLE="CP_LOSSFRQ" LABEL="Computed Profit: LOSSFRQ" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="BESTPROFIT" VARIABLE="BP_LOSSFRQ" LABEL="Best Profit: LOSSFRQ" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION1" LABEL="2" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION2" LABEL="1" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION3" LABEL="0" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="EVENT" LABEL="Target Event" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="ORDER" LABEL="Order" LENGTH="10" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+</Metadata>
+</DecMeta>
+</LOSSFRQ>
+</EmTargetAttributes>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids2" X="448" Y="197" DESCRIPTION="CH5_LOSSDAT_SCORE2" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="chlossdatscore" Scope="LOCAL" Role="SCORE" Library="THEBOOK" Table="CH5_LOSSDAT_SCORE2" NCols="25" NObs="29855" NBytes="4596736" Segment="" DataSourceRole="SCORE" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="chlossdatscore" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="Ksarma" DsCreateDate="1786546217" DsModifiedBy="Ksarma" DsModifyDate="1786546217.1" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="ANTHFT" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="DELINQ" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="DEPC" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="GENDER" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="HEQ" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="INCOME" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="LOSSFRQ" AttributeName="ROLE" AttributeValue="TARGET"/>
+<DELTA Variable="LOSSFRQ" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="MOB" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NAF" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NOSBLT" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NPRACC" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NPRVIO" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NSMOK" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NUMTR" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVEH" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="RES_STA" AttributeName="LEVEL" AttributeValue="BINARY"/>
+</EmVariableAttributes>
+<EmTargetAttributes>
+<LOSSFRQ>
+<DecData Table="EMWS2.Ids2_LOSSFRQ_DD">
+<Data>
+<Obs LOSSFRQ="2" COUNT="36" DATAPRIOR="0.0012058282" TRAINPRIOR="0.0012058282" DECPRIOR="0.0012" DECISION1="5" DECISION2="-1" DECISION3="-2"/>
+<Obs LOSSFRQ="1" COUNT="709" DATAPRIOR="0.0237481159" TRAINPRIOR="0.0237481159" DECPRIOR="0.0237" DECISION1="-1" DECISION2="4" DECISION3="-1"/>
+<Obs LOSSFRQ="0" COUNT="29110" DATAPRIOR="0.9750460559" TRAINPRIOR="0.9750460559" DECPRIOR="0.975" DECISION1="-2" DECISION2="-1" DECISION3="1"/>
+</Data>
+<Metadata>
+<Variable NAME="LOSSFRQ" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="COUNT" LABEL="Level Counts" LENGTH="8" FORMAT="10." TYPE="N"/>
+<Variable NAME="DATAPRIOR" LABEL="Data Proportions" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="TRAINPRIOR" LABEL="Training Proportions" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECPRIOR" LABEL="Decision Priors" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION1" LABEL="2" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION2" LABEL="1" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION3" LABEL="0" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS2.Ids2_LOSSFRQ_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" LEVEL="PROFIT" EVENT="" ORDER="" FORMAT="" TYPE="" COST="" USE="Y"/>
+<Obs _TYPE_="TARGET" VARIABLE="LOSSFRQ" LABEL="" LEVEL="NOMINAL" EVENT="2" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="DATAPRIOR" VARIABLE="DATAPRIOR" LABEL="Data Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="TRAINPRIOR" VARIABLE="TRAINPRIOR" LABEL="Training Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="DECPRIOR" VARIABLE="DECPRIOR" LABEL="Decision Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_LOSSFRQ2" LABEL="Predicted: LOSSFRQ=2" LEVEL="2" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_LOSSFRQ2" LABEL="Residual: LOSSFRQ=2" LEVEL="2" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_LOSSFRQ1" LABEL="Predicted: LOSSFRQ=1" LEVEL="1" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_LOSSFRQ1" LABEL="Residual: LOSSFRQ=1" LEVEL="1" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_LOSSFRQ0" LABEL="Predicted: LOSSFRQ=0" LEVEL="0" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_LOSSFRQ0" LABEL="Residual: LOSSFRQ=0" LEVEL="0" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="FROM" VARIABLE="F_LOSSFRQ" LABEL="From: LOSSFRQ" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="C" COST="" USE=""/>
+<Obs _TYPE_="INTO" VARIABLE="I_LOSSFRQ" LABEL="Into: LOSSFRQ" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="C" COST="" USE=""/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION1" LABEL="2" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION2" LABEL="1" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION3" LABEL="0" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="EVENT" LABEL="Target Event" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="ORDER" LABEL="Order" LENGTH="10" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+</Metadata>
+</DecMeta>
+</LOSSFRQ>
+</EmTargetAttributes>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMODL.NEURAL.CLASS" COMPONENT="NeuralNetwork" ID="Neural" X="446" Y="140" DESCRIPTION="Neural Network" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Neural">
+<PROPERTIES UseEstimates="N" NetworkArchitecture="USER" DirectConnection="N" Hidden="3" Prelim="Y" PreliminaryRuns="5" PrelimMaxiter="10" PrelimMaxTime="1 HOUR" Maxiter="100" Maxtime="4 HOURS" TrainingTechnique="DEFAULT" ConvDefaults="Y" AbsConvValue="-1.34078E154" AbsFValue="0" AbsFTime="1" AbsGValue="0.00001" AbsGTime="1" AbsXValue="1E-8" AbsXTime="1" FConvValue="0" FConvTime="1" GConvValue="1E-6" GConvTime="1" ModelSelectionCriterion="AVERAGE ERROR" SuppressOutput="N" Residuals="Y" Standardizations="N" HiddenUnits="N" TrainCode="" PrelimOutest="" Outest="" Outfit="" InitialDs="" CodefileRes="" CodefileNoRes="" AddHidden="Y" HiddenCombFunction="LIN" HiddenActivation="TAN" HiddenBias="Y" TargetCombFunction="LIN" TargetActivation="LOG" TargetError="MBERNOULLI" TargetBias="Y" InitialSeed="12345" RandDist="NORMAL" RandScale="0.1" RandLoc="0" InputStandardization="STD" WeightDecay="0" Accelerate="1.2" Decelerate="0.5" Learn="0.1" MaxLearn="50" MinLearn="0.00001" Momentum="0" MaxMomentum="1.75" Tilt="0" ForceRun="N" RunAction="Train" Component="NeuralNetwork">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.EMDPART.CLASS" COMPONENT="Partition" ID="Part" X="301" Y="140" DESCRIPTION="Data Partition" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Part">
+<PROPERTIES Method="DEFAULT" TrainPct="60" ValidatePct="30" TestPct="10" RandomSeed="12345" OutputType="DATA" IntervalDistribution="Y" ClassDistribution="Y" ForceRun="N" RunAction="Train" Component="Partition">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMUTIL.EMSCORE.CLASS" COMPONENT="Score" ID="Score" X="627" Y="197" DESCRIPTION="Score" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="ASSESS" TOOLPREFIX="Score">
+<PROPERTIES OutputType="VIEW" FixedOutputNames="Y" HideVariables="N" HideInput="Y" HideTarget="Y" HideRejected="Y" HideAssess="Y" HidePredict="Y" HideFreq="Y" HideClassification="Y" HideResidual="Y" HideOther="Y" ScoreValidate="N" ScoreTest="N" CScore="Y" JScore="Y" PackageName="DEFAULT" UserPackageName="" PreferenceName="" OptimizedCode="Y" GraphReports="Y" ForceRun="N" RunAction="Train" Component="Score">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="Part" TO="Neural"/>
+<CONNECTION FROM="Neural" TO="EMCODE"/>
+<CONNECTION FROM="Neural" TO="Score"/>
+<CONNECTION FROM="Ids" TO="Part"/>
+<CONNECTION FROM="Ids2" TO="Score"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>

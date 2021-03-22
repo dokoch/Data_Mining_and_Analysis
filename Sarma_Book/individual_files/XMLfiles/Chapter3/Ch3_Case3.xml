@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="14.1" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="69" Y="168" DESCRIPTION="NUMRI_BTARG_C" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="numribtargc1" Scope="LOCAL" Role="RAW" Library="THEBOOK" Table="NUMRI_BTARG_C" NCols="304" NObs="17880" NBytes="48858112" Segment="" DataSourceRole="RAW" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="numribtargc1" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="Ksarma" DsCreateDate="1784490641.5" DsModifiedBy="Ksarma" DsModifyDate="1784490641.5" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="MATCHKEY" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="MATCHKEY" AttributeName="COMMENT" AttributeValue="Exceeds maximum number of levels cutoff"/>
+<DELTA Variable="NVAR010" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR019" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR022" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR031" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR032" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR033" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR033" AttributeName="COMMENT" AttributeValue="Exceeds percentage of missing cutoff"/>
+<DELTA Variable="NVAR038" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR038" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR039" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR039" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR040" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR040" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR042" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR042" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR043" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR043" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR050" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR058" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR060" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR060" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR061" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR061" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR062" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR062" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR066" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR066" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR070" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR076" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR076" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR092" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR094" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR096" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR097" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR099" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR099" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR100" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR102" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR104" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR107" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR108" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR109" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR109" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR111" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR112" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR114" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR116" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR118" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR119" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR120" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR121" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR123" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR124" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR125" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR125" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR131" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR131" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR132" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR132" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR133" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR133" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR145" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR150" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR151" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR154" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR166" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR169" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR170" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR171" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR172" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR173" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR174" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR175" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR175" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR176" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR180" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR182" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR183" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR183" AttributeName="LEVEL" AttributeValue="UNARY"/>
+<DELTA Variable="NVAR187" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR188" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR215" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NVAR215" AttributeName="COMMENT" AttributeValue="Exceeds percentage of missing cutoff"/>
+<DELTA Variable="NVAR224" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR285" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR288" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR300" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR301" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR302" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR303" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR304" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR305" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR306" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR307" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR308" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR309" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR313" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR315" AttributeName="LEVEL" AttributeValue="NOMINAL"/>
+<DELTA Variable="NVAR317" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR320" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NVAR323" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="resp" AttributeName="ROLE" AttributeValue="TARGET"/>
+<DELTA Variable="resp" AttributeName="LEVEL" AttributeValue="BINARY"/>
+</EmVariableAttributes>
+<EmTargetAttributes>
+<resp>
+<DecData Table="EMWS4.Ids_resp_DD">
+<Data>
+<Obs RESP="1" COUNT="1788" DATAPRIOR="0.1" TRAINPRIOR="0.1" DECPRIOR="." DECISION1="1" DECISION2="0"/>
+<Obs RESP="0" COUNT="16092" DATAPRIOR="0.9" TRAINPRIOR="0.9" DECPRIOR="." DECISION1="0" DECISION2="1"/>
+</Data>
+<Metadata>
+<Variable NAME="resp" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="COUNT" LABEL="Level Counts" LENGTH="8" FORMAT="10." TYPE="N"/>
+<Variable NAME="DATAPRIOR" LABEL="Data Proportions" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="TRAINPRIOR" LABEL="Training Proportions" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECPRIOR" LABEL="Decision Priors" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION1" LABEL="1" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION2" LABEL="0" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS4.Ids_resp_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" LEVEL="PROFIT" EVENT="" ORDER="" FORMAT="" TYPE="" COST="" USE="N"/>
+<Obs _TYPE_="TARGET" VARIABLE="resp" LABEL="resp" LEVEL="BINARY" EVENT="1" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION1" LABEL="1" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION2" LABEL="0" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DATAPRIOR" VARIABLE="DATAPRIOR" LABEL="Data Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="TRAINPRIOR" VARIABLE="TRAINPRIOR" LABEL="Training Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="DECPRIOR" VARIABLE="DECPRIOR" LABEL="Decision Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_resp1" LABEL="Predicted: resp=1" LEVEL="1" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_resp1" LABEL="Residual: resp=1" LEVEL="1" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_resp0" LABEL="Predicted: resp=0" LEVEL="0" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_resp0" LABEL="Residual: resp=0" LEVEL="0" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="FROM" VARIABLE="F_resp" LABEL="From: resp" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="C" COST="" USE=""/>
+<Obs _TYPE_="INTO" VARIABLE="I_resp" LABEL="Into: resp" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="C" COST="" USE=""/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="EVENT" LABEL="Target Event" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="ORDER" LABEL="Order" LENGTH="10" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+</Metadata>
+</DecMeta>
+</resp>
+</EmTargetAttributes>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.EMDPART.CLASS" COMPONENT="Partition" ID="Part" X="219" Y="168" DESCRIPTION="Data Partition" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Part">
+<PROPERTIES Method="DEFAULT" TrainPct="50" ValidatePct="50" TestPct="0" RandomSeed="12345" OutputType="DATA" IntervalDistribution="Y" ClassDistribution="Y" ForceRun="N" RunAction="Train" Component="Partition">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMODL.REGRESSION.CLASS" COMPONENT="Regression" ID="Reg" X="505" Y="168" DESCRIPTION="Regression" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Reg">
+<PROPERTIES MainEffect="Y" TwoFactor="N" Polynomial="N" PolynomialDegree="2" Terms="N" Error="LOGISTIC" LinkFunction="LOGIT" SuppressIntercept="N" InputCoding="DEVIATION" MinResourceUse="N" ModelSelection="NONE" SelectionCriterion="DEFAULT" SelectionDefault="Y" Sequential="N" SlEntry="0.05" SlStay="0.05" Start="0" Stop="0" Force="0" Hierarchy="CLASS" Rule="NONE" MaxStep="." StepOutput="N" OptimizationTechnique="DEFAULT" ModelDefaults="Y" MaxIterations="." MaxFunctionCalls="." MaxCPUTime="1 HOUR" ConvDefaults="Y" AbsConvValue="-1.34078E154" AbsFValue="0" AbsFTime="1" AbsGValue="0.00001" AbsGTime="1" AbsXValue="1E-8" AbsXTime="1" FConvValue="0" FConvTimes="1" GConvValue="1E-6" GConvTimes="1" ClParm="N" Covout="N" CovB="N" CorB="N" Simple="N" SuppressOutput="N" Details="N" PrintDesignMatrix="N" SASSPDS="N" Performance="N" ExcludedVariable="REJECT" ForceRun="N" RunAction="Train" Component="Regression" Interactions="">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMEXPL.VARSELECTION.CLASS" COMPONENT="VariableSelection" ID="Varsel" X="362" Y="168" DESCRIPTION="Variable Selection" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="EXPLORE" TOOLPREFIX="Varsel">
+<PROPERTIES TargetModel="CHISQUARE" HideRejectedVars="Y" MaxMissingPercent="50" MaxLevel="100" RejectUnusedInputVars="Y" ByPassVars="NONE" ByPassVarsRole="INPUT" HideUnusedInputVars="Y" UseAov16="N" UseInteractions="N" UseGroups="Y" MinR2="0.005" StopR2="0.0005" MaxRows="3000" Passes="6" ChiSquare="3.84" Bins="50" SASSPDS="Y" PrintOption="DEFAULT" ForceRun="N" RunAction="Train" Component="VariableSelection" VarselLabel="VARSELLABEL" RoleUnusedVars="DEFAULT">
+<VariableProperties/>
+<ManualSelectionVariables/>
+<NameMappings/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="Part" TO="Varsel"/>
+<CONNECTION FROM="Varsel" TO="Reg"/>
+<CONNECTION FROM="Ids" TO="Part"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>

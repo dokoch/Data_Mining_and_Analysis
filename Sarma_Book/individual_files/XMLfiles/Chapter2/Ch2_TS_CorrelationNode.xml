@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="14.1" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="153" Y="137" DESCRIPTION="TRANSACT" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="transact1" Scope="LOCAL" Role="TRANSACTION" Library="THEBOOK" Table="TRANSACT" NCols="4" NObs="1080" NBytes="29696" Segment="" DataSourceRole="TRANSACTION" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="transact1" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="Ksarma" DsCreateDate="1810546411.9" DsModifiedBy="Ksarma" DsModifyDate="1810546411.9" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="Product" AttributeName="ROLE" AttributeValue="CROSSID"/>
+<DELTA Variable="Product" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="STATE" AttributeName="ROLE" AttributeValue="CROSSID"/>
+<DELTA Variable="Sales" AttributeName="ROLE" AttributeValue="TARGET"/>
+</EmVariableAttributes>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="TSCC" ID="TSCC" X="302" Y="137" DESCRIPTION="TS Correlation" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="TSDM" TOOLPREFIX="TSCC">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMTSDM.TSCC.SOURCE" TimeInterval="AUTO" Accumulation="TOTAL" ACOV="N" ACF="Y" PACF="Y" IACF="N" ACFNORM="Y" PACFNORM="Y" IACFNORM="N" WhiteNoise="Y" AutoDefaultNLag="N" AutoNLag="12" CCOV="N" CCF="Y" CCFNORM="Y" CrossDefaultNLag="Y" CrossNLag="24" Varsel="N" VarselCriterion="0.5" outputDS="ACF" Transpose="N" MaxPlotTS="100" ForceRun="N" RunAction="Train" Component="TSCC">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="Ids" TO="TSCC"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="14.1" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMCORE.EMCODETOOL.CLASS" COMPONENT="SASCode" ID="EMCODE" X="348" Y="39" DESCRIPTION="SAS Code" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="UTILITY" TOOLPREFIX="EMCODE">
+<PROPERTIES UsePriors="Y" ToolType="UTILITY" DataNeeded="N" PublishCode="PUBLISH" ScoreCodeFormat="DATASTEP" MetaAdvisor="BASIC" ForceRun="N" RunAction="Train" Component="SASCode">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data><![CDATA[
+proc contents data=&amp;EM_LIB..tsdc_decompout;
+run;
+data TheBook.tsdc_decompout ; 
+ set &amp;EM_LIB..tsdc_decompout;
+run;
+
+proc print data=&amp;EM_LIB..tsdc_decompout label noobs; 
+ var STATE Product MNTH_YR _SEASON_ SC SA ORIGINAL _NAME_ ; 
+ where STATE = &quot;CT&quot; and Product = &quot;A&quot;;
+run;
+]]>
+</Data>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="38" Y="38" DESCRIPTION="TRANSACT" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="transact1" Scope="LOCAL" Role="TRANSACTION" Library="THEBOOK" Table="TRANSACT" NCols="4" NObs="1080" NBytes="29696" Segment="" DataSourceRole="TRANSACTION" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="transact1" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="Ksarma" DsCreateDate="1810546411.9" DsModifiedBy="Ksarma" DsModifyDate="1810546411.9" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="Product" AttributeName="ROLE" AttributeValue="CROSSID"/>
+<DELTA Variable="Product" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="STATE" AttributeName="ROLE" AttributeValue="CROSSID"/>
+<DELTA Variable="Sales" AttributeName="ROLE" AttributeValue="TARGET"/>
+</EmVariableAttributes>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="TSDC" ID="TSDC" X="199" Y="38" DESCRIPTION="TS Decomposition" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="TSDM" TOOLPREFIX="TSDC">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMTSDM.TSDC.SOURCE" TimeInterval="AUTO" Accumulation="TOTAL" ALLCOMP="N" TCC="N" SIC="N" SC="Y" TCS="N" IC="N" SA="Y" PCSA="N" TC="N" CC="N" DecompMode="MULT" Lambda="1600" NPeriods="USER" ExportedPeriods="LAST" UserNPeriods="12" NMAXTSPLOT="100" Transpose="Y" ForceRun="N" RunAction="Train" Component="TSDC">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="TSDC" TO="EMCODE"/>
+<CONNECTION FROM="Ids" TO="TSDC"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>
